@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+:root {
+  --background: #010609;
+  --foreground: #fafafa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #03131f;
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(18, 92, 122, 0.15), transparent 28%),
+    linear-gradient(180deg, #010b14 0%, #010609 18%, #030e16 100%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(110, 231, 255, 0.35);
+  color: white;
+}
+
+@keyframes float {
+  0%,
+  100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(22px) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% { transform: translateX(0px); }
+  50% { transform: translateX(24px); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-25%); opacity: 0; }
+  20% { opacity: 0.7; }
+  100% { transform: translateX(115%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.scrolling-ticker-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(90deg, rgba(2, 10, 16, 0.95), rgba(7, 21, 33, 0.9), rgba(2, 10, 16, 0.95));
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 1.25rem 0;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.scrolling-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 30s linear infinite;
+}
+
+.cloud {
+  position: absolute;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(232, 244, 255, 0.82), rgba(148, 190, 215, 0.2));
+  filter: blur(10px);
+  animation: drift 18s ease-in-out infinite;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  background: inherit;
+}
+
+.product-bottle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 45px 50px rgba(4, 17, 27, 0.55));
+}
+
+.product-bottle .bottle-cap {
+  position: absolute;
+  top: -14%;
+  left: 50%;
+  width: 38%;
+  height: 18%;
+  transform: translateX(-50%);
+  border-radius: 18px 18px 12px 12px;
+  background: linear-gradient(180deg, rgba(212, 225, 236, 0.95), rgba(135, 158, 173, 0.92));
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.45), 0 6px 16px rgba(2, 6, 23, 0.25);
+}
+
+.product-bottle .bottle-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 38% 38% 24% 24% / 12% 12% 20% 20%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: linear-gradient(180deg, rgba(255,255,255,0.36) 0%, rgba(255,255,255,0.15) 20%, rgba(35, 110, 170, 0.8) 21%, rgba(92, 226, 255, 0.6) 100%);
+  box-shadow:
+    inset 0 12px 18px rgba(255, 255, 255, 0.32),
+    inset 0 -18px 20px rgba(3, 18, 28, 0.24),
+    0 18px 40px rgba(2, 8, 15, 0.38);
+}
+
+.product-bottle .bottle-body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.38), rgba(255,255,255,0.06) 26%, rgba(255,255,255,0.18) 52%, rgba(255,255,255,0.04) 75%, rgba(255,255,255,0.28));
+}
+
+.product-bottle .bottle-liquid {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  top: 22%;
+  border-radius: 30% 30% 18% 18% / 10% 10% 18% 18%;
+  background: linear-gradient(180deg, rgba(160, 246, 255, 0.8), rgba(67, 177, 229, 0.9));
+  box-shadow: inset 0 18px 16px rgba(255,255,255,0.18);
+}
+
+.product-bottle .label {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 44%;
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  text-align: center;
+  letter-spacing: 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: rgba(255,255,255,0.94);
+  background: rgba(2, 10, 19, 0.23);
+  border: 1px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(12px);
+}
+
+.product-bottle .bubble {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.5);
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.35);
+  animation: bubble-rise 6s ease-in-out infinite;
+}
+
+.golden-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.golden-shimmer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: translateX(-140%);
+  animation: shimmer 3.8s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .cloud {
+    opacity: 0.7;
+  }
+
+  .product-bottle .label {
+    font-size: 0.55rem;
+    letter-spacing: 0.28rem;
+  }
+}
