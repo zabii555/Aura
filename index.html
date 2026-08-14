@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ed1c24'/%3E%3Cpath d='M17 17h30v8H36v22h-8V25H17z' fill='white'/%3E%3Cpath d='M39 17h8v30h-8z' fill='white' opacity='.72'/%3E%3C/svg%3E">
+  <link rel="shortcut icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23ed1c24'/%3E%3Cpath d='M17 17h30v8H36v22h-8V25H17z' fill='white'/%3E%3Cpath d='M39 17h8v30h-8z' fill='white' opacity='.72'/%3E%3C/svg%3E">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Current — a premium modern news magazine website.">
+<title>The Current — Premium News Magazine</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap');
+
+:root{
+  --accent:#e11d2e;
+  --accent-dark:#b91423;
+  --ink:#101010;
+  --paper:#f6f4f0;
+  --card:#ffffff;
+  --muted:#77736d;
+  --line:#dfdcd5;
+  --soft:#ece9e3;
+  --shadow:0 18px 50px rgba(25,22,18,.09);
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  font-family:"DM Sans",Arial,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.5;
+  overflow-x:hidden;
+}
+body.dark{
+  --ink:#f6f4f0;--paper:#0c0c0c;--card:#151515;--muted:#aaa7a0;
+  --line:#2c2c2c;--soft:#202020;--shadow:0 18px 50px rgba(0,0,0,.35)
+}
+body.dark header{background:rgba(14,14,14,.9)}
+body.dark .icon-btn{background:#151515}
+body.dark .title-copy{background:#151515}
+body.dark .marquee{background:#f4f1eb;color:#111}
+body.dark .marquee .dot{background:var(--accent)}
+a{text-decoration:none;color:inherit}
+button,input{font:inherit}
+button{cursor:pointer}
+.container{width:min(1220px,92%);margin-inline:auto}
+.serif{font-family:"Playfair Display",Georgia,serif}
+
+/* ---------- HEADER ---------- */
+.site-header{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(255,255,255,.88);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(18px);
+}
+.header-row{
+  min-height:78px;display:flex;align-items:center;gap:28px;
+}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-mark{
+  width:35px;height:35px;border-radius:50%;background:var(--ink);color:var(--paper);
+  display:grid;place-items:center;font:800 19px "Playfair Display",serif;
+}
+.brand-name{font:800 25px "Playfair Display",serif;letter-spacing:-1px}
+.brand-name span{color:var(--accent)}
+.main-nav{display:flex;align-items:center;gap:22px;margin-left:auto}
+.main-nav a{
+  position:relative;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;
+  color:var(--ink);padding:30px 0;
+}
+.main-nav a:after{
+  content:"";position:absolute;left:0;right:100%;bottom:22px;height:2px;background:var(--accent);
+  transition:.25s;
+}
+.main-nav a:hover:after,.main-nav a.active:after{right:0}
+.header-actions{display:flex;gap:8px}
+.icon-btn{
+  width:39px;height:39px;border:1px solid var(--line);border-radius:8px;
+  background:#fff;color:var(--ink);display:grid;place-items:center;
+}
+.icon-btn:hover{border-color:var(--accent);color:var(--accent)}
+.menu-btn{display:none}
+
+/* ---------- BREAKING BAR ---------- */
+.breaking{
+  background:var(--ink);color:#fff;font-size:11px;font-weight:700;
+  border-bottom:1px solid #222;overflow:hidden;
+}
+.breaking-inner{display:flex;align-items:center;min-height:36px}
+.breaking-label{
+  flex:0 0 auto;background:var(--accent);padding:10px 14px;
+  font-size:10px;letter-spacing:1.3px;text-transform:uppercase;
+}
+.marquee{overflow:hidden;white-space:nowrap;flex:1}
+.marquee-track{display:inline-flex;gap:50px;padding-left:35px;animation:marquee 28s linear infinite}
+.marquee-item{display:inline-flex;align-items:center;gap:9px}
+.marquee .dot{width:5px;height:5px;background:#fff;border-radius:50%;display:inline-block}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- HERO ---------- */
+.hero{padding:42px 0 30px}
+.hero-grid{display:grid;grid-template-columns:1.22fr .78fr;gap:20px}
+.hero-copy{
+  min-height:500px;background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:50px;display:flex;flex-direction:column;justify-content:center;
+  box-shadow:0 1px 0 rgba(0,0,0,.02);
+}
+.eyebrow{
+  display:flex;align-items:center;gap:10px;color:var(--accent);
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--accent)}
+.hero-copy h1{
+  max-width:760px;font:800 clamp(48px,6vw,82px)/.95 "Playfair Display",Georgia,serif;
+  letter-spacing:-2.5px;margin:18px 0 20px;
+}
+.hero-copy h1 em{font-style:normal;color:var(--accent)}
+.hero-copy p{max-width:610px;color:var(--muted);font-size:16px;line-height:1.75}
+.hero-meta{display:flex;align-items:center;gap:14px;margin-top:30px;font-size:11px;color:var(--muted)}
+.author-dot{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#111,#777)}
+.hero-photo{
+  min-height:500px;border-radius:var(--radius);overflow:hidden;position:relative;background:#d8d5cf;
+  box-shadow:var(--shadow);
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.02) 40%,rgba(0,0,0,.82) 100%);
+}
+.hero-photo-caption{
+  position:absolute;z-index:2;left:28px;right:28px;bottom:26px;color:#fff;
+}
+.hero-photo-caption .cat{color:#ff6c77}
+.hero-photo-caption h2{font:700 30px/1.08 "Playfair Display",serif;margin-top:8px}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--card);border-block:1px solid var(--line)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:25px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat strong{display:block;font:800 36px "Playfair Display",serif}
+.stat span{font-size:9px;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- SECTIONS ---------- */
+.section{padding:64px 0}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;
+  border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:22px;
+}
+.section-head h2{font:700 34px "Playfair Display",serif;letter-spacing:-.5px}
+.section-link{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--accent)}
+.section-link:hover{text-decoration:underline}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+
+/* ---------- CARDS ---------- */
+.news-card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:transform .35s,box-shadow .35s,border-color .35s;
+}
+.news-card:hover{
+  transform:translateY(-7px);box-shadow:var(--shadow);border-color:transparent;
+}
+.card-image{height:245px;background:#d9d7d2;overflow:hidden;position:relative}
+.card-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .6s}
+.news-card:hover .card-image img{transform:scale(1.055)}
+.card-tag{
+  position:absolute;left:14px;top:14px;background:#fff;color:var(--accent);
+  padding:7px 9px;font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;
+}
+.card-body{padding:20px}
+.card-body h3{font:700 24px/1.13 "Playfair Display",serif;letter-spacing:-.2px;margin:8px 0 11px}
+.card-body p{font-size:13px;color:var(--muted);line-height:1.7}
+.byline{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  border-top:1px solid var(--line);margin-top:18px;padding-top:14px;
+  font-size:10px;color:var(--muted)
+}
+.read-more{color:var(--accent);font-weight:800}
+.grid-4 .card-image{height:210px}
+.grid-4 .card-body h3{font-size:20px}
+
+/* ---------- FEATURE STRIP ---------- */
+.feature-strip{
+  background:var(--ink);color:#fff;border-radius:var(--radius);overflow:hidden;
+  display:grid;grid-template-columns:1fr 1.15fr;min-height:360px;
+}
+.feature-text{padding:45px;display:flex;flex-direction:column;justify-content:center}
+.feature-text h2{font:700 clamp(34px,4vw,55px)/1 "Playfair Display",serif;margin:13px 0}
+.feature-text p{color:#aaa;max-width:500px;line-height:1.75}
+.feature-image{position:relative;min-height:360px}
+.feature-image img{width:100%;height:100%;object-fit:cover;display:block}
+.feature-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,17,17,.45),transparent 55%)}
+
+/* ---------- TRENDING ---------- */
+.trending{
+  border:1px solid var(--line);background:var(--card);border-radius:var(--radius);overflow:hidden;
+}
+.trend-row{
+  display:grid;grid-template-columns:70px 1fr 150px;gap:18px;align-items:center;
+  padding:18px 20px;border-bottom:1px solid var(--line);transition:.25s;
+}
+.trend-row:last-child{border-bottom:0}
+.trend-row:hover{background:var(--soft)}
+.rank{font:800 30px "Playfair Display",serif;color:var(--accent)}
+.trend-row h3{font:700 21px/1.2 "Playfair Display",serif}
+.trend-meta{font-size:10px;color:var(--muted);margin-top:7px}
+.trend-thumb{height:78px;border-radius:7px;overflow:hidden}
+.trend-thumb img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- NEWSLETTER ---------- */
+.newsletter{
+  background:linear-gradient(135deg,#111 0%,#1b1b1b 55%,#2b0e12 100%);
+  color:#fff;border-radius:var(--radius);padding:50px;
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.newsletter h2{font:700 42px/1 "Playfair Display",serif}
+.newsletter p{color:#aaa;margin-top:12px;line-height:1.7}
+.signup{display:flex;gap:8px}
+.signup input{
+  min-width:0;flex:1;padding:14px 16px;border:1px solid #444;border-radius:7px;
+  background:#111;color:#fff;outline:none;
+}
+.signup input:focus{border-color:var(--accent)}
+.btn{
+  border:0;background:var(--accent);color:#fff;border-radius:7px;padding:14px 18px;
+  font-size:11px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;
+  transition:.25s;white-space:nowrap;
+}
+.btn:hover{background:var(--accent-dark);transform:translateY(-2px)}
+
+/* ---------- GALLERY ---------- */
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.gallery-item{overflow:hidden;border-radius:8px;min-height:220px;background:#ddd}
+.gallery-item:nth-child(1){grid-column:span 5;grid-row:span 2}
+.gallery-item:nth-child(2){grid-column:span 4}
+.gallery-item:nth-child(3){grid-column:span 3}
+.gallery-item:nth-child(4){grid-column:span 4}
+.gallery-item:nth-child(5){grid-column:span 3}
+.gallery-item img{width:100%;height:100%;min-height:220px;object-fit:cover;display:block;transition:.5s}
+.gallery-item:hover img{transform:scale(1.04)}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0d0d0d;color:#fff;padding:50px 0 25px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:35px}
+.footer-brand{font:700 28px "Playfair Display",serif}
+.footer-brand span{color:var(--accent)}
+.footer-copy{color:#888;font-size:13px;line-height:1.8;margin-top:12px;max-width:390px}
+.footer-title{font-size:10px;font-weight:900;letter-spacing:1.5px;color:#fff;text-transform:uppercase;margin-bottom:15px}
+.footer-links a{display:block;color:#888;font-size:12px;margin:9px 0;transition:.2s}
+.footer-links a:hover{color:#fff}
+.footer-bottom{border-top:1px solid #292929;margin-top:40px;padding-top:18px;color:#666;font-size:10px;display:flex;justify-content:space-between}
+
+
+/* ---------- ARTICLE DETAIL MODAL ---------- */
+.article-modal{
+  position:fixed;inset:0;z-index:4000;display:none;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(10px);
+  padding:30px 18px;overflow:auto;
+}
+.article-modal.show{display:flex;align-items:flex-start;justify-content:center}
+.article-panel{
+  width:min(900px,100%);margin:30px auto;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 35px 100px rgba(0,0,0,.35);animation:articleIn .35s ease;
+}
+@keyframes articleIn{
+  from{opacity:0;transform:translateY(25px) scale(.98)}
+  to{opacity:1;transform:none}
+}
+.article-cover{height:380px;background:#222;position:relative}
+.article-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.article-close{
+  position:absolute;right:18px;top:18px;width:42px;height:42px;border:0;
+  border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:20px;
+  cursor:pointer;z-index:2
+}
+.article-content{padding:38px 44px 45px}
+.article-content .article-category{
+  color:var(--accent);font-size:10px;font-weight:900;letter-spacing:2px;
+  text-transform:uppercase
+}
+.article-content h2{
+  font:800 clamp(34px,5vw,58px)/1.02 "Playfair Display",Georgia,serif;
+  letter-spacing:-1.5px;margin:12px 0 14px
+}
+.article-byline{color:var(--muted);font-size:11px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.article-content p{
+  color:var(--muted);font-size:16px;line-height:1.9;margin-top:23px
+}
+.article-content .article-lead{
+  color:var(--ink);font-size:19px;line-height:1.7;font-weight:500
+}
+.article-btn{
+  border:0;background:none;padding:0;color:var(--accent);font-size:10px;
+  font-weight:900;cursor:pointer
+}
+.article-btn:hover{text-decoration:underline}
+@media(max-width:600px){
+  .article-modal{padding:10px}
+  .article-cover{height:260px}
+  .article-content{padding:28px 22px 32px}
+  .article-content h2{font-size:36px}
+}
+
+/* ---------- SEARCH ---------- */
+.search-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);
+  z-index:3000;display:none;align-items:flex-start;justify-content:center;padding-top:130px;
+}
+.search-overlay.show{display:flex}
+.search-box{width:min(700px,92%);background:var(--card);border-radius:12px;padding:25px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.search-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.search-top strong{font:700 25px "Playfair Display",serif}
+.close-search{border:0;background:none;color:var(--muted);font-size:20px}
+.search-input{
+  width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  border-radius:8px;padding:15px;outline:0;
+}
+.search-results{margin-top:15px;max-height:300px;overflow:auto}
+.search-result{padding:13px;border-bottom:1px solid var(--line);cursor:pointer}
+.search-result:hover{background:var(--soft)}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ---------- IMAGE FALLBACK ---------- */
+.image-fallback{background:linear-gradient(135deg,#222,#555);display:grid;place-items:center;color:#fff}
+.image-fallback:before{content:"THE CURRENT";font:700 18px "Playfair Display",serif;letter-spacing:2px}
+
+/* ---------- MOBILE ---------- */
+.mobile-menu{
+  position:fixed;top:79px;left:0;right:0;z-index:999;background:var(--card);
+  border-bottom:1px solid var(--line);padding:15px 4%;display:none;
+}
+.mobile-menu.show{display:block}
+.mobile-menu a{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-size:12px;font-weight:800;text-transform:uppercase}
+@media(max-width:1050px){
+  .main-nav{gap:14px}.main-nav a{font-size:10px}
+  .hero-copy{padding:38px}.hero-copy h1{font-size:60px}
+}
+@media(max-width:850px){
+  .main-nav{display:none}.menu-btn{display:grid}
+  .hero-grid,.feature-strip,.newsletter{grid-template-columns:1fr}
+  .hero-copy,.hero-photo{min-height:420px}.feature-image{min-height:300px}
+  .grid-3{grid-template-columns:repeat(2,1fr)}.grid-4{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:2fr 1fr 1fr}
+}
+@media(max-width:600px){
+  .container{width:90%}.header-row{min-height:70px}.brand-name{font-size:22px}.brand-mark{width:31px;height:31px}
+  .header-actions .theme-btn{display:none}
+  .breaking-label{padding-inline:10px}.marquee-track{gap:35px}
+  .hero{padding-top:25px}.hero-copy{padding:30px;min-height:420px}.hero-copy h1{font-size:47px;letter-spacing:-1.5px}
+  .hero-photo{min-height:300px}.hero-photo-caption h2{font-size:25px}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .section{padding:45px 0}.section-head h2{font-size:29px}
+  .grid-3,.grid-4{grid-template-columns:1fr}.card-image,.grid-4 .card-image{height:235px}
+  .feature-text{padding:30px}.feature-text h2{font-size:37px}
+  .trend-row{grid-template-columns:45px 1fr}.trend-thumb{display:none}
+  .newsletter{padding:30px}.newsletter h2{font-size:35px}.signup{flex-direction:column}
+  .gallery{display:grid;grid-template-columns:1fr 1fr}.gallery-item,.gallery-item:nth-child(n){grid-column:auto;grid-row:auto;min-height:180px}.gallery-item img{min-height:180px}
+  .footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}
+  .footer-bottom{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-row">
+    <a class="brand" href="#home" aria-label="The Current home">
+      <span class="brand-mark">C</span>
+      <span class="brand-name">THE <span>CURRENT</span></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="#home">Home</a>
+      <a href="#business">Business</a>
+      <a href="#sports">Sports</a>
+      <a href="#technology">Technology</a>
+      <a href="#politics">Politics</a>
+      <a href="#trending">Trending</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a><a href="#business">Business</a><a href="#sports">Sports</a>
+  <a href="#technology">Technology</a><a href="#politics">Politics</a>
+  <a href="#trending">Trending</a><a href="#gallery">Gallery</a>
+</div>
+
+<div class="breaking">
+  <div class="container breaking-inner">
+    <div class="breaking-label">Breaking</div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="marquee-item"><i class="dot"></i> Fans fill the stadium as championship rivalry returns</span>
+        <span class="marquee-item"><i class="dot"></i> Markets watch new economic signals</span>
+        <span class="marquee-item"><i class="dot"></i> Technology changes the way we work</span>
+        <span class="marquee-item"><i class="dot"></i> The latest stories from The Current newsroom</span>
+        <span class="marquee-item"><i class="dot"></i> Fans fill the stadium as championship rivalry returns</span>
+        <span class="marquee-item"><i class="dot"></i> Markets watch new economic signals</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main id="home">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid reveal">
+    <div class="hero-copy">
+      <div class="eyebrow">Independent • Informed • Current</div>
+      <h1>News that gives you the <em>bigger picture.</em></h1>
+      <p>
+        Sharp reporting, useful context and stories worth your time — covering
+        business, sports, technology, politics and the world around you.
+      </p>
+      <div class="hero-meta">
+        <span class="author-dot"></span>
+        <span>Edited by The Current newsroom</span>
+        <span>•</span>
+        <span>Updated today</span>
+      </div>
+    </div>
+
+    <!-- TOP TITLE PICTURE -->
+    <div class="hero-photo">
+      <img
+        src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1500&q=90"
+        alt="Football stadium and pitch"
+        loading="eager"
+        onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"
+      >
+      <div class="hero-photo-caption">
+        <div class="cat">Cover Story</div>
+        <h2>The moments everyone will remember.</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="container stats-grid">
+    <div class="stat"><strong class="counter" data-target="48">0</strong><span>Stories Today</span></div>
+    <div class="stat"><strong class="counter" data-target="12">0</strong><span>Editors Online</span></div>
+    <div class="stat"><strong class="counter" data-target="8.6">0</strong><span>Readers Now (K)</span></div>
+    <div class="stat"><strong class="counter" data-target="24">0</strong><span>News Updates</span></div>
+  </div>
+</section>
+
+<!-- LATEST -->
+<section class="section reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2>Latest Stories</h2><a class="section-link" href="#trending">VIEW TRENDING →</a>
+    </div>
+
+    <div class="grid-3">
+      <article class="news-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=90" alt="Politics" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">
+          <span class="card-tag">Politics</span>
+        </div>
+        <div class="card-body">
+          <h3>Policy Leaders Debate the Next Chapter</h3>
+          <p>A closer look at decisions shaping communities, institutions and public life.</p>
+          <div class="byline"><span>Maya Khan · 4 min read</span><button class="read-more article-btn" type="button">Read →</button></div>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=90" alt="Business market" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">
+          <span class="card-tag">Business</span>
+        </div>
+        <div class="card-body">
+          <h3>Markets Watch New Economic Signals</h3>
+          <p>Investors and business leaders adjust strategies as new data arrives.</p>
+          <div class="byline"><span>Priya Nathan · 5 min read</span><button class="read-more article-btn" type="button">Read →</button></div>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=90" alt="Technology" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">
+          <span class="card-tag">Technology</span>
+        </div>
+        <div class="card-body">
+          <h3>The Technology Race Changing Everyday Life</h3>
+          <p>AI and smarter devices are changing how people live, work and connect.</p>
+          <div class="byline"><span>Aiden Cole · 4 min read</span><button class="read-more article-btn" type="button">Read →</button></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section class="section reveal" id="business">
+  <div class="container">
+    <div class="section-head"><h2>Business</h2><a class="section-link" href="#business">MORE BUSINESS →</a></div>
+    <div class="grid-3">
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=90" alt="Business team" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Startups</span></div>
+        <div class="card-body"><h3>Small Businesses Turn to Digital Tools</h3><p>New technology helps entrepreneurs reach more customers and build smarter operations.</p><div class="byline"><span>6 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=90" alt="Finance meeting" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Finance</span></div>
+        <div class="card-body"><h3>New Ideas Are Reshaping Modern Finance</h3><p>A changing financial landscape creates new opportunities for businesses ready to adapt.</p><div class="byline"><span>5 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1200&q=90" alt="Market chart" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Markets</span></div>
+        <div class="card-body"><h3>Markets Watch the Next Economic Move</h3><p>Companies and investors prepare for the next phase of economic growth.</p><div class="byline"><span>4 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SPORTS -->
+<section class="section reveal" id="sports">
+  <div class="container">
+    <div class="section-head"><h2>Sports</h2><a class="section-link" href="#sports">ALL SPORTS →</a></div>
+
+    <div class="grid-4">
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=90" alt="Athletics" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Athletics</span></div>
+        <div class="card-body"><h3>Underdog Squad Reaches the Final</h3><div class="byline"><span>Theo Banks · 4 min</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=90" alt="Football match" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Football</span></div>
+        <div class="card-body"><h3>Young Star Breaks Club Record</h3><div class="byline"><span>Sara Lin · 3 min</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1200&q=90" alt="Basketball" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Basketball</span></div>
+        <div class="card-body"><h3>Coaches Reveal New Lineup</h3><div class="byline"><span>Owen Reyes · 5 min</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <!-- FANS / STADIUM IMAGE -->
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=90" alt="Fans and football stadium" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Fans</span></div>
+        <div class="card-body"><h3>Fans Fill the Stadium</h3><div class="byline"><span>Rina Achebe · 3 min</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE -->
+<section class="section reveal">
+  <div class="container">
+    <div class="feature-strip">
+      <div class="feature-text">
+        <div class="eyebrow" style="color:#ff6672">Editor's Pick</div>
+        <h2>More than headlines. <br>Real context.</h2>
+        <p>We bring together the facts, the people and the moments behind the story — so every visit gives you something useful.</p>
+        <div style="margin-top:25px"><a class="btn" href="#trending">Explore Stories</a></div>
+      </div>
+      <div class="feature-image">
+        <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1400&q=90" alt="Newspaper and journalism" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section class="section reveal" id="technology">
+  <div class="container">
+    <div class="section-head"><h2>Technology</h2><a class="section-link" href="#technology">EXPLORE TECH →</a></div>
+    <div class="grid-3">
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=90" alt="AI technology" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">AI & Tech</span></div>
+        <div class="card-body"><h3>The Technology Race Changing Everyday Life</h3><p>AI and connected services are changing modern life at remarkable speed.</p><div class="byline"><span>4 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=90" alt="Digital work" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Innovation</span></div>
+        <div class="card-body"><h3>The Next Generation of Digital Work</h3><p>New tools are transforming how teams collaborate and create.</p><div class="byline"><span>5 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=90" alt="Cybersecurity" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Cybersecurity</span></div>
+        <div class="card-body"><h3>Why Digital Security Matters More Than Ever</h3><p>Businesses are investing in stronger protection as digital risks evolve.</p><div class="byline"><span>6 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- POLITICS -->
+<section class="section reveal" id="politics">
+  <div class="container">
+    <div class="section-head"><h2>Politics</h2><a class="section-link" href="#politics">MORE POLITICS →</a></div>
+    <div class="grid-3">
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=90" alt="Politics" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Politics</span></div>
+        <div class="card-body"><h3>Policy Leaders Debate the Next Chapter</h3><p>Important decisions continue to shape public life and communities.</p><div class="byline"><span>4 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1555848962-6e79363ec58f?auto=format&fit=crop&w=1200&q=90" alt="Government building" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">Government</span></div>
+        <div class="card-body"><h3>New Plans Put Public Services in Focus</h3><p>Officials discuss priorities for the coming months and years.</p><div class="byline"><span>5 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+      <article class="news-card">
+        <div class="card-image"><img src="https://images.unsplash.com/photo-1580130379624-3a069adbffc5?auto=format&fit=crop&w=1200&q=90" alt="World politics" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('image-fallback')"><span class="card-tag">World</span></div>
+        <div class="card-body"><h3>Diplomats Prepare for a New Round of Talks</h3><p>International leaders meet to discuss shared challenges.</p><div class="byline"><span>7 min read</span><button class="read-more article-btn" type="button">Read →</button></div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING -->
+<section class="section reveal" id="trending">
+  <div class="container">
+    <div class="section-head"><h2>Trending Now</h2><span class="section-link">MOST READ</span></div>
+    <div class="trending">
+
+      <div class="trend-row">
+        <div class="rank">01</div>
+        <div><h3>The Biggest Story Everyone Is Talking About</h3><div class="trend-meta">12.8k reads · 6 min read</div></div>
+        <div class="trend-thumb"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=700&q=80" alt=""></div>
+      </div>
+
+      <div class="trend-row">
+        <div class="rank">02</div>
+        <div><h3>Markets React to New Economic Signals</h3><div class="trend-meta">9.4k reads · 5 min read</div></div>
+        <div class="trend-thumb"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=700&q=80" alt=""></div>
+      </div>
+
+      <div class="trend-row">
+        <div class="rank">03</div>
+        <div><h3>Sports Fans Celebrate a Dramatic Win</h3><div class="trend-meta">8.7k reads · 4 min read</div></div>
+        <div class="trend-thumb"><img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=700&q=80" alt=""></div>
+      </div>
+
+      <div class="trend-row">
+        <div class="rank">04</div>
+        <div><h3>The New Technology Everyone Wants to Know About</h3><div class="trend-meta">7.9k reads · 5 min read</div></div>
+        <div class="trend-thumb"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=80" alt=""></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section reveal" id="gallery">
+  <div class="container">
+    <div class="section-head"><h2>Photo Gallery</h2><span class="section-link">THE LATEST IMAGES</span></div>
+    <div class="gallery">
+      <a class="gallery-item" href="#sports"><img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=90" alt="Stadium" loading="lazy"></a>
+      <a class="gallery-item" href="#business"><img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1000&q=90" alt="Business" loading="lazy"></a>
+      <a class="gallery-item" href="#technology"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=90" alt="Technology" loading="lazy"></a>
+      <a class="gallery-item" href="#politics"><img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1000&q=90" alt="Politics" loading="lazy"></a>
+      <a class="gallery-item" href="#sports"><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1000&q=90" alt="Athletics" loading="lazy"></a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section reveal">
+  <div class="container">
+    <div class="newsletter">
+      <div>
+        <div class="eyebrow" style="color:#ff6672">The Daily Briefing</div>
+        <h2>Good news. <br>Delivered simply.</h2>
+        <p>Get the most important stories, without the noise.</p>
+      </div>
+      <form class="signup" id="signupForm">
+        <input type="email" id="email" placeholder="Your email address" required>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">THE <span>CURRENT</span></div>
+        <p class="footer-copy">A premium editorial experience covering business, sports, technology, politics and the stories shaping tomorrow.</p>
+      </div>
+      <div>
+        <div class="footer-title">Sections</div>
+        <div class="footer-links"><a href="#business">Business</a><a href="#sports">Sports</a><a href="#technology">Technology</a><a href="#politics">Politics</a></div>
+      </div>
+      <div>
+        <div class="footer-title">Explore</div>
+        <div class="footer-links"><a href="#trending">Trending</a><a href="#gallery">Gallery</a><a href="#home">Home</a></div>
+      </div>
+      <div>
+        <div class="footer-title">Contact</div>
+        <div class="footer-links"><a href="mailto:hello@thecurrent.example">Email us</a><a href="#home">About</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 The Current. All rights reserved.</span><span>Independent journalism • Built with care</span></div>
+  </div>
+</footer>
+
+
+<!-- ARTICLE DETAIL -->
+<div class="article-modal" id="articleModal" aria-hidden="true">
+  <article class="article-panel" role="dialog" aria-modal="true" aria-labelledby="articleTitle">
+    <div class="article-cover">
+      <button class="article-close" id="articleClose" aria-label="Close article">✕</button>
+      <img id="articleImage" src="" alt="">
+    </div>
+    <div class="article-content">
+      <div class="article-category" id="articleCategory"></div>
+      <h2 id="articleTitle"></h2>
+      <div class="article-byline" id="articleByline"></div>
+      <p class="article-lead" id="articleLead"></p>
+      <p id="articleBody1"></p>
+      <p id="articleBody2"></p>
+    </div>
+  </article>
+</div>
+
+<!-- SEARCH -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-top">
+      <strong>Search The Current</strong>
+      <button class="close-search" id="closeSearch">✕</button>
+    </div>
+    <input class="search-input" id="searchInput" placeholder="Search business, sports, technology..." autocomplete="off">
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<script>
+/* COUNTERS */
+const counters=document.querySelectorAll(".counter");
+const counterObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    const el=entry.target,target=parseFloat(el.dataset.target);
+    let start=0;
+    const duration=1100,startTime=performance.now();
+    function tick(now){
+      const progress=Math.min((now-startTime)/duration,1);
+      const eased=1-Math.pow(1-progress,3);
+      start=target*eased;
+      el.textContent=target%1?start.toFixed(1):Math.floor(start);
+      if(progress<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObserver.unobserve(el);
+  });
+},{threshold:.5});
+counters.forEach(c=>counterObserver.observe(c));
+
+/* SCROLL REVEAL */
+const revealObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add("visible");revealObserver.unobserve(entry.target)}
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>revealObserver.observe(el));
+
+/* ACTIVE NAV */
+const sections=document.querySelectorAll("main section[id], main[id]");
+const navLinks=document.querySelectorAll(".main-nav a");
+window.addEventListener("scroll",()=>{
+  let current="home";
+  document.querySelectorAll("main section[id]").forEach(section=>{
+    if(window.scrollY>=section.offsetTop-150) current=section.id;
+  });
+  navLinks.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+current));
+});
+
+/* MOBILE MENU */
+const menuBtn=document.getElementById("menuBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+menuBtn.addEventListener("click",()=>mobileMenu.classList.toggle("show"));
+mobileMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>mobileMenu.classList.remove("show")));
+
+/* THEME */
+const themeBtn=document.getElementById("themeBtn");
+if(localStorage.getItem("current-theme")==="dark")document.body.classList.add("dark");
+themeBtn.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("current-theme",document.body.classList.contains("dark")?"dark":"light");
+});
+
+
+/* ARTICLE DETAILS */
+const articleModal = document.getElementById("articleModal");
+const articleClose = document.getElementById("articleClose");
+const articleImage = document.getElementById("articleImage");
+const articleCategory = document.getElementById("articleCategory");
+const articleTitle = document.getElementById("articleTitle");
+const articleByline = document.getElementById("articleByline");
+const articleLead = document.getElementById("articleLead");
+const articleBody1 = document.getElementById("articleBody1");
+const articleBody2 = document.getElementById("articleBody2");
+
+const articleData = [
+  {
+    category:"Technology",
+    title:"The Technology Race Changing Everyday Life",
+    author:"Aiden Cole",
+    time:"4 min read",
+    image:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1500&q=90",
+    lead:"AI and connected services are changing modern life at remarkable speed.",
+    body1:"From smarter software to connected devices, technology is becoming a bigger part of everyday decisions. The most useful innovations are not only powerful — they are designed to make work and communication simpler.",
+    body2:"The story is still developing, but one thing is clear: the technology race is moving from the lab into ordinary life, creating new opportunities while raising important questions about privacy, security and responsible design."
+  },
+  {
+    category:"Innovation",
+    title:"The Next Generation of Digital Work",
+    author:"The Current Tech Desk",
+    time:"5 min read",
+    image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1500&q=90",
+    lead:"New tools are transforming how teams collaborate and create.",
+    body1:"Modern teams are combining remote collaboration, automation and intelligent software to move projects forward faster. The biggest shift is not one individual tool, but the way multiple tools now work together.",
+    body2:"For businesses, that creates a chance to rethink workflows from the ground up — with more flexible teams, faster feedback and better access to information."
+  },
+  {
+    category:"Cybersecurity",
+    title:"Why Digital Security Matters More Than Ever",
+    author:"The Current Security Desk",
+    time:"6 min read",
+    image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1500&q=90",
+    lead:"Businesses are investing in stronger protection as digital risks evolve.",
+    body1:"As more operations move online, security has become a core business responsibility rather than a specialist concern. Strong passwords, access controls and careful data handling are now basic parts of modern operations.",
+    body2:"The most effective approach is continuous: identify risks, train people, update systems and prepare for incidents before they happen."
+  },
+  {
+    category:"Politics",
+    title:"Policy Leaders Debate the Next Chapter",
+    author:"Maya Khan",
+    time:"4 min read",
+    image:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1500&q=90",
+    lead:"A closer look at decisions shaping communities, institutions and public life.",
+    body1:"Policy debates often affect daily life in ways that are easy to overlook. From public services to economic priorities, the choices made today can influence communities for years.",
+    body2:"The Current follows the arguments, evidence and people behind those decisions so readers can understand the bigger picture."
+  },
+  {
+    category:"Business",
+    title:"Markets Watch New Economic Signals",
+    author:"Priya Nathan",
+    time:"5 min read",
+    image:"https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1500&q=90",
+    lead:"Investors and business leaders adjust strategies as new data arrives.",
+    body1:"Markets respond quickly to changing expectations. Businesses are watching demand, costs and broader economic signals as they decide where to invest and how to plan.",
+    body2:"For readers, the important story is not simply whether markets rise or fall, but what those movements reveal about confidence, risk and the direction of the economy."
+  },
+  {
+    category:"Sports",
+    title:"Fans Fill the Stadium",
+    author:"Rina Achebe",
+    time:"3 min read",
+    image:"https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1500&q=90",
+    lead:"A packed stadium creates an atmosphere that becomes part of the story itself.",
+    body1:"Supporters arrived early, filled the stands and turned a major sporting occasion into a shared celebration. The energy around the venue was as memorable as the action on the field.",
+    body2:"For players and fans alike, these are the moments that make sport more than a score — they create memories that stay long after the final whistle."
+  },
+  {
+    category:"Sports",
+    title:"Underdog Squad Reaches the Final",
+    author:"Theo Banks",
+    time:"4 min read",
+    image:"https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1500&q=90",
+    lead:"An unexpected run has taken the team all the way to the final.",
+    body1:"The squad entered the competition without the attention given to the traditional favourites. Strong teamwork and disciplined performances changed that quickly.",
+    body2:"Now one match remains, and the underdogs have a chance to turn an unlikely campaign into a defining sporting story."
+  },
+  {
+    category:"Football",
+    title:"Young Star Breaks Club Record",
+    author:"Sara Lin",
+    time:"3 min read",
+    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1500&q=90",
+    lead:"A breakthrough performance has put a young player in the spotlight.",
+    body1:"The record-breaking moment came after a confident run of performances. Coaches and teammates have praised the player's discipline and willingness to learn.",
+    body2:"The next challenge will be consistency — but the latest performance suggests the club may have found a player ready for a much bigger stage."
+  },
+  {
+    category:"Basketball",
+    title:"Coaches Reveal New Lineup",
+    author:"Owen Reyes",
+    time:"5 min read",
+    image:"https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1500&q=90",
+    lead:"A new lineup could change the team's approach for the next stretch of the season.",
+    body1:"Coaches are experimenting with combinations designed to improve movement, defence and scoring options. The changes are intended to make the team more adaptable.",
+    body2:"Fans will be watching closely to see whether the new approach delivers when the pressure rises."
+  },
+  {
+    category:"Startups",
+    title:"Small Businesses Turn to Digital Tools",
+    author:"The Current Business Desk",
+    time:"6 min read",
+    image:"https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1500&q=90",
+    lead:"New technology helps entrepreneurs reach more customers and build smarter operations.",
+    body1:"Small businesses are adopting digital tools for marketing, customer service, payments and everyday operations. The goal is often simple: save time and serve customers better.",
+    body2:"As these tools become easier to use, even small teams can compete with larger organisations in areas that once required significant resources."
+  },
+  {
+    category:"Finance",
+    title:"New Ideas Are Reshaping Modern Finance",
+    author:"The Current Business Desk",
+    time:"5 min read",
+    image:"https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1500&q=90",
+    lead:"A changing financial landscape creates new opportunities for businesses ready to adapt.",
+    body1:"Financial services are becoming more digital, accessible and data-driven. Businesses are exploring new ways to manage payments, planning and customer relationships.",
+    body2:"The result is a financial ecosystem where speed and trust both matter — and where organisations that adapt quickly can find new paths to growth."
+  }
+];
+
+function openArticle(index){
+  const a = articleData[index] || articleData[0];
+  articleCategory.textContent = a.category;
+  articleTitle.textContent = a.title;
+  articleByline.textContent = `${a.author}  •  ${a.time}`;
+  articleLead.textContent = a.lead;
+  articleBody1.textContent = a.body1;
+  articleBody2.textContent = a.body2;
+  articleImage.src = a.image;
+  articleImage.alt = a.title;
+  articleModal.classList.add("show");
+  articleModal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  articleClose.focus();
+}
+function closeArticle(){
+  articleModal.classList.remove("show");
+  articleModal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+document.querySelectorAll(".article-btn").forEach((btn,index)=>{
+  btn.addEventListener("click",()=>openArticle(index % articleData.length));
+});
+articleClose.addEventListener("click",closeArticle);
+articleModal.addEventListener("click",e=>{if(e.target===articleModal)closeArticle()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape" && articleModal.classList.contains("show"))closeArticle()});
+
+/* SEARCH */
+const overlay=document.getElementById("searchOverlay");
+const searchInput=document.getElementById("searchInput");
+const searchResults=document.getElementById("searchResults");
+const searchable=[
+  ["Policy Leaders Debate the Next Chapter","#politics",3],
+  ["Markets Watch New Economic Signals","#business",4],
+  ["The Technology Race Changing Everyday Life","#technology",0],
+  ["Small Businesses Turn to Digital Tools","#business",9],
+  ["Underdog Squad Reaches the Final","#sports",6],
+  ["Young Star Breaks Club Record","#sports",7],
+  ["Coaches Reveal New Lineup","#sports",8],
+  ["Fans Fill the Stadium","#sports",5],
+  ["The Biggest Story Everyone Is Talking About","#trending",5],
+  ["Photo Gallery","#gallery",5]
+];
+document.getElementById("searchBtn").addEventListener("click",()=>{
+  overlay.classList.add("show");searchInput.focus();
+});
+document.getElementById("closeSearch").addEventListener("click",()=>overlay.classList.remove("show"));
+overlay.addEventListener("click",e=>{if(e.target===overlay)overlay.classList.remove("show")});
+searchInput.addEventListener("input",()=>{
+  const q=searchInput.value.toLowerCase().trim();
+  if(!q){searchResults.innerHTML="<div style='color:var(--muted);font-size:12px;padding:10px'>Start typing to search stories.</div>";return}
+  const found=searchable.filter(x=>x[0].toLowerCase().includes(q));
+  searchResults.innerHTML=found.length
+    ? found.map(x=>`<div class="search-result" data-target="${x[1]}" data-article="${x[2]}"><strong>${x[0]}</strong></div>`).join("")
+    : "<div style='color:var(--muted);padding:12px'>No stories found.</div>";
+  searchResults.querySelectorAll(".search-result").forEach(item=>{
+    item.addEventListener("click",()=>{
+      overlay.classList.remove("show");
+      if(item.dataset.article !== undefined){ openArticle(Number(item.dataset.article)); } else { document.querySelector(item.dataset.target).scrollIntoView({behavior:"smooth"}); }
+    });
+  });
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")overlay.classList.remove("show");
+  if(e.key==="/" && document.activeElement.tagName!=="INPUT"){
+    e.preventDefault();overlay.classList.add("show");searchInput.focus();
+  }
+});
+
+/* NEWSLETTER */
+document.getElementById("signupForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const email=document.getElementById("email");
+  alert("Thank you! Your daily briefing is ready for: "+email.value);
+  email.value="";
+});
+</script>
+</body>
+</html>
