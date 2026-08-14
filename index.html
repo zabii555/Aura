@@ -1002,12 +1002,11 @@ document.addEventListener("keydown",e=>{
   if(e.key==="/" && document.activeElement.tagName!=="INPUT"){
     e.preventDefault();overlay.classList.add("show");searchInput.focus();
   }
-});
+});A
 
-/* NEWSLETTER */
-document.getElementById("signupForm").addEventListener("submit",e=>{
+/* NEWSLETTER */Adocument.getElementById("signupForm").addEventListener("submit",e=>{
   e.preventDefault();
-  const email=document.getElementById("email");
+  const email=document.getEAlementById("email");
   alert("Thank you! Your daily briefing is ready for: "+email.value);
   email.value="";
 });
